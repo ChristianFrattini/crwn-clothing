@@ -1,8 +1,8 @@
 import './category-item.styles.scss'
 
-const CategoryItem=({category})=>{
+const CategoryItem=({category})=>{   //CategoryItem takes parameters from category
     const {imageUrl, title}=category;
-    return(
+    return(  //homepage is built
         <div className='category-container'>
           <div className='background-image' style={{
             backgroundImage:`url(${imageUrl})`

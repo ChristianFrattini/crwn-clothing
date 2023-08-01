@@ -4,7 +4,7 @@ import CategoryItem from '../category-item/category-item.component'
 
 const Categories =()=>{
     
-    const categories=[
+    const categories=[  //array with all homepage categories details
         {
           id: 1,
           title: 'Hats',
@@ -30,18 +30,13 @@ const Categories =()=>{
           title: 'Men',
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png"
         },
-        {
-          id: 6,
-          title: 'PORCODIO',
-          imageUrl: "https://i.ibb.co/R70vBrQ/men.png"
-        },
       ]
     
     return(
     <div className='directory-container'>
 
-      {categories.map((category)=>
-        <CategoryItem key={category.id} category={category}/>
+      {categories.map((category)=>  //maps the array
+        <CategoryItem key={category.id} category={category}/> //title and url are passed to the category-item component
       )}
     </div>        
     )
