@@ -30,11 +30,7 @@ const Categories =()=>{
           title: 'Men',
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png"
         },
-        {
-          id: 6,
-          title: 'OID',
-          imageUrl: "https://i.ibb.co/R70vBrQ/men.png"
-        },
+        
       ]
     
     return(
