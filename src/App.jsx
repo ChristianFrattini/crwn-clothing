@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Home from './components/routes/home/home.component' //home component import
 import {Routes, Route} from 'react-router-dom'
 import Navigation from './components/routes/navigation/navigation.component'
+import SignIn from './components/routes/signin/sign-in.component'
 import './index.css'
 
 
@@ -23,6 +24,7 @@ const App=()=> {
       <Route path='/' element={<Navigation/>}>
         <Route path="" element={<Home/>}/>
         <Route path="shop" element={<Shop/>}/>
+        <Route path="signin" element={<SignIn/>}/>
       </Route>
     </Routes>
     
