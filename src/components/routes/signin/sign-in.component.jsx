@@ -2,6 +2,8 @@
 import { useEffect } from 'react'; //import to prevent restart of the application when redirected
 import { getRedirectResult } from 'firebase/auth'; //import to prevent restart of the application when redirected
 import { auth, signInWithGooglePopup, createUserDocumentFromAuth, signInWithGoogleRedirect } from '../../../utils/firebase/firebase.utils'
+import SignUpForm from '../../sign-up-form/sign-up-form.component'
+
 
 const SignIn=()=>{
 
@@ -36,6 +38,8 @@ const SignIn=()=>{
             <h1>Sign In</h1>
             <button onClick={logGoogleUser}> Sign In with GooglePopup</button>
             <button onClick={signInWithGoogleRedirect}> Sign In with GoogleRedirect</button>
+
+            <SignUpForm/>
         </div>
     )
 }
