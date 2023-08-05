@@ -27,6 +27,8 @@ const firebaseConfig = {
 
   export const auth = getAuth();
   export const signInWithGooglePopup =()=> signInWithPopup(auth, provider) //provider and auth are both passed for authentication
+  export const signInWithGoogleRedirect=()=>signInWithRedirect(auth,provider)
+
 
   export const db= getFirestore(); //db instanciated. its possible to use the database
   
