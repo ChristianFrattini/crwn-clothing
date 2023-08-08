@@ -3,9 +3,11 @@ import { useEffect } from 'react'; //import to prevent restart of the applicatio
 import { getRedirectResult } from 'firebase/auth'; //import to prevent restart of the application when redirected
 import { auth, signInWithGooglePopup, createUserDocumentFromAuth, signInWithGoogleRedirect } from '../../../utils/firebase/firebase.utils'
 import SignUpForm from '../../sign-up-form/sign-up-form.component'
+import SignInForm from '../../sign-in-form/sign-in-form.component'
+import './authentication.styles.scss'
 
 
-const SignIn=()=>{
+const Authentication=()=>{
 
     useEffect(() => {
  
@@ -26,22 +28,15 @@ const SignIn=()=>{
       }, []); // empty array = repeat the code only once
 
 
-    const logGoogleUser = async()=>{     //log in with google account 
-        const {user}= await signInWithGooglePopup();  //destructure the response to get the user
-        //console.log(response);
-        const userDocRef= await createUserDocumentFromAuth(user) //creates a doc when user logs in
-
-    }
-
+    
     return (
-        <div>
-            <h1>Sign In</h1>
-            <button onClick={logGoogleUser}> Sign In with GooglePopup</button>
-            <button onClick={signInWithGoogleRedirect}> Sign In with GoogleRedirect</button>
-
+        <div className='authentication-container'>
+            
+            <SignInForm/>
             <SignUpForm/>
+            
         </div>
     )
 }
 
-export default SignIn;
+export default Authentication;
