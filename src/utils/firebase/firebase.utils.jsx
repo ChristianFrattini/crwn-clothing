@@ -1,5 +1,9 @@
 import {initializeApp} from 'firebase/app';  //initialize app creates an app instance based on a predifined config
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth' //auth services
+import { getAuth, 
+  signInWithRedirect, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  createUserWithEmailAndPassword } from 'firebase/auth' //auth services
 import { getFirestore, 
   doc, //document instance method
   getDoc, //read method
@@ -32,7 +36,7 @@ const firebaseConfig = {
 
   export const db= getFirestore(); //db instanciated. its possible to use the database
   
-  export const createUserDocumentFromAuth=async (userAuth)=>{
+  export const createUserDocumentFromAuth=async (userAuth, additionalInformation)=>{
     const userDocRef = doc(db,'users', userAuth.uid)
 
     console.log(userDocRef);
@@ -45,10 +49,15 @@ const firebaseConfig = {
       const createdAt= new Date(); // creates date
 
       try{
-        await setDoc(userDocRef, {displayName,email,createdAt})
+        await setDoc(userDocRef, {displayName,email,createdAt, ...additionalInformation})
       }catch (error){
         console.log('error creating the user', error.message)
       }
     }
     return userDocRef;
+  }
+
+  export const createAuthUserWithEmailAndPassword=async( email,password)=>{  //authentication with user and password
+    if(!email||!password) return;   //if email or password is not provided then exit
+    return await createUserWithEmailAndPassword(auth, email, password);
   }

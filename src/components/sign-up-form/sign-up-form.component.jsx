@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
 const defaultFormFields={
     displayName:'',
     email:'',
@@ -12,7 +14,41 @@ const SignUpForm =()=>{
     const [formFields, setFormFields]=useState(defaultFormFields); // use state to read the form fields and put them into an array
     const {displayName, email, password, confirmPassword}=formFields; //destructure the array for the specific values to be set
 
+    const resetFormFields =()=>{
+        setFormFields(defaultFormFields);
+    }
+
     //console.log(formFields)
+
+    const handleSubmit=async(event)=>{   //Sign up form submit handler
+        event.preventDefault();  //prevents default behaviors for the event
+        if(password!=confirmPassword){  //checks whether the passwords correspond
+            alert('Password do not match');
+            return;
+        }
+        
+        try{
+            const {user}=await createAuthUserWithEmailAndPassword(email,password);  //creates the the authentication user
+            await createUserDocumentFromAuth (user, {displayName}); // creates the user document
+            resetFormFields();  //clears form fields setting them to default
+            //console.log(response)
+        }
+        catch(error){
+
+            if(error.code=='auth/weak-password'){  //if password is too weak alert user
+                alert('Warning. Password needs to be at least 6 characters long');
+            }
+            
+            if(error.code=='auth/email-already-in-use'){  //if email already in use alert user
+                alert('Warning. Email already in use')
+            }else{
+                console.log('user creation error', error);  // for any other generic error alert user
+                alert('user creation error', error);
+            }
+            
+        }
+        
+    }
 
     const handleChange=(event)=>{  //every time the text changes the set formfiels sets the value to the corresponding name
         const {name, value}=event.target // parameters name and value are taken when the input changes
@@ -26,7 +62,7 @@ const SignUpForm =()=>{
         <div>
             <h1>Sign Up with Email and Password</h1>
 
-            <form onSubmit={()=>{}}>
+            <form onSubmit={handleSubmit}>
                 <label>Display Name</label>
                 <input type="text" onChange={handleChange} name="displayName" value={displayName} required/>
 
@@ -39,10 +75,10 @@ const SignUpForm =()=>{
                 <label>Confirm Password</label>
                 <input type="password" onChange={handleChange} name="confirmPassword" value={confirmPassword} required/>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit" >Sign Up</button>
             </form>
         </div>
     )
 }
 
-export default SignUpForm
+export default SignUpForm;
