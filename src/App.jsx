@@ -6,8 +6,8 @@ import Home from './components/routes/home/home.component' //home component impo
 import {Routes, Route} from 'react-router-dom'
 import Navigation from './components/routes/navigation/navigation.component'
 import Authentication from './components/routes/authentication/authentication.component'
-import './index.css'
 
+import './index.css'
 
 const App=()=> {
 
