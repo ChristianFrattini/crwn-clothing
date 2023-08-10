@@ -6,18 +6,13 @@ import Home from './components/routes/home/home.component' //home component impo
 import {Routes, Route} from 'react-router-dom'
 import Navigation from './components/routes/navigation/navigation.component'
 import Authentication from './components/routes/authentication/authentication.component'
+import Shop from './components/routes/shop/shop.component'
 
 import './index.css'
 
 const App=()=> {
 
-  const Shop =()=>{
-    return(
-      <div>
-        <h1>SHOP</h1>
-      </div>
-    )
-  }
+  
 
   return (  //routes initialization path and element (component) 
     <Routes>
