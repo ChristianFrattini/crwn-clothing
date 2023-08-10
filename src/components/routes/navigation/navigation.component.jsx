@@ -8,14 +8,15 @@ import './navigation.styles.scss'
 
 const Navigation =()=>{
 
-    const {currentUser,setCurrentUser}=useContext(UserContext);
-    //console.log(currentUser)
-    const signOutHandler=async()=>{
-        await signOutUser();
+    const {currentUser}=useContext(UserContext);
+    
+
+    //const signOutHandler=async()=>{
+        //await signOutUser();
         //console.log(res);
-        setCurrentUser(null);
-        alert('Successfully Signed Out')
-    }
+        //setCurrentUser(null);
+        //alert('Successfully Signed Out')
+    //}
 
     return(
       <Fragment>
@@ -29,7 +30,7 @@ const Navigation =()=>{
                 </Link>
                 {
                     currentUser?(   //when there is a current user then render a sign out link, if not SIGN in
-                        <span className="nav-link" onClick={signOutHandler}>SIGN OUT</span>) :(<Link className="nav-link" to='auth'>
+                        <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>) :(<Link className="nav-link" to='auth'>
                         SIGN IN
                     </Link>)
                 }

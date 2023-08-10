@@ -19,7 +19,7 @@ const SignUpForm =()=>{
     const [formFields, setFormFields]=useState(defaultFormFields); // use state to read the form fields and put them into an array
     const {displayName, email, password, confirmPassword}=formFields; //destructure the array for the specific values to be set
 
-    const {setCurrentUser}=useContext(UserContext)
+    //const {setCurrentUser}=useContext(UserContext)
 
     const resetFormFields =()=>{
         setFormFields(defaultFormFields);
@@ -37,7 +37,7 @@ const SignUpForm =()=>{
         try{
             const {user}=await createAuthUserWithEmailAndPassword(email,password);  //creates the the authentication user
 
-            setCurrentUser(user);
+            //setCurrentUser(user);
 
             await createUserDocumentFromAuth (user, {displayName}); // creates the user document
             resetFormFields();  //clears form fields setting them to default

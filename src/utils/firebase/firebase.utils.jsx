@@ -5,7 +5,9 @@ import { getAuth,
   GoogleAuthProvider, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut } from 'firebase/auth' //auth services
+  signOut,
+  onAuthStateChanged,  //observer. method that allows to keep track of signin/out events in order to change code
+   } from 'firebase/auth' //auth services
 import { getFirestore, 
   doc, //document instance method
   getDoc, //read method
@@ -69,4 +71,7 @@ const firebaseConfig = {
     return await signInWithEmailAndPassword(auth, email, password);
   }
 
-  export const signOutUser =async()=> await signOut(auth)
+  export const signOutUser =async()=> await signOut(auth);
+
+  export const onAuthStateChangedListener=(callback)=> onAuthStateChanged(auth, callback)
+  //open listener->its always listening for a change state in the auth process

@@ -19,16 +19,16 @@ const SignInForm =()=>{
     const [formFields, setFormFields]=useState(defaultFormFields); // use state to read the form fields and put them into an array
     const { email, password, }=formFields; //destructure the array for the specific values to be set
 
-    const {setCurrentUser}=useContext(UserContext)
+    //const {setCurrentUser}=useContext(UserContext)
 
     const resetFormFields =()=>{
         setFormFields(defaultFormFields);
     }
 
     const signInWithGoogle = async()=>{     //log in with google account 
-        const {user}= await signInWithGooglePopup();  //destructure the response to get the user
+        await signInWithGooglePopup();  //destructure the response to get the user
         //console.log(response);
-        await createUserDocumentFromAuth(user) //creates a doc when user logs in
+        
 
     }
 
@@ -42,7 +42,7 @@ const SignInForm =()=>{
         try{
             const {user}= await signInAuthUserWithEmailAndPassword(email, password);
 
-            setCurrentUser(user);
+            //setCurrentUser(user);
             
             resetFormFields();  //clears form fields setting them to default
             
