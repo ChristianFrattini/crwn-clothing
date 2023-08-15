@@ -12,7 +12,7 @@ import { getFirestore,
   doc, //document instance method
   getDoc, //read method
   setDoc, 
-  Firestore} from 'firebase/firestore'
+  Firestore, collection, writeBatch} from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -39,6 +39,19 @@ const firebaseConfig = {
 
 
   export const db= getFirestore(); //db instanciated. its possible to use the database
+
+  export const addCollectionAndDocuments= async(collectionKey, objectToAdd)=>{
+    const CollectionRef=collection(db, collectionKey) //the method is used to create a category within the db. collection key is the name of the category
+
+    const batch=writeBatch(db)
+    objectToAdd.forEach((object)=>{
+      const docRef=doc(CollectionRef, object.title.toLowerCase());
+      batch.set(docRef, object)
+    })
+
+    await batch.commit();
+    console.log('Done')
+  }
   
   export const createUserDocumentFromAuth=async (userAuth, additionalInformation)=>{
     const userDocRef = doc(db,'users', userAuth.uid)
