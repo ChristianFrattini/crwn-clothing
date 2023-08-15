@@ -12,7 +12,7 @@ import { getFirestore,
   doc, //document instance method
   getDoc, //read method
   setDoc, 
-  Firestore, collection, writeBatch} from 'firebase/firestore'
+  Firestore, collection, writeBatch, query, getDocs} from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -51,6 +51,21 @@ const firebaseConfig = {
 
     await batch.commit();
     console.log('Done')
+  }
+
+  export const getCategoriesAndDocuments=async()=>{ // method used for reading the categories and the docs inside firebase
+    const collectionRef=collection(db, 'categories')
+    const q=query(collectionRef);
+
+    const querySnapShot=await getDocs(q);
+
+    const categoryMap=querySnapShot.docs.reduce((acc, docSnapshot)=>{
+      const {title, items}=docSnapshot.data();
+      acc[title.toLowerCase()]=items
+      return acc
+    },{})
+
+    return categoryMap;
   }
   
   export const createUserDocumentFromAuth=async (userAuth, additionalInformation)=>{

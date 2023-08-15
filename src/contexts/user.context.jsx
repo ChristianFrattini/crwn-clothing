@@ -23,7 +23,7 @@ export const UserProvider=({children})=>{  //the provider will wrap every compon
                 createUserDocumentFromAuth(user) //creates a doc when user logs in
             }
             setCurrentUser(user);
-            console.log(user);
+            //console.log(user);
 
         });  //passes the callback function as the second value 'callback' in firebase code
         return unsubscribe;
