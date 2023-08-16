@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { CategoriesContext } from '../../../contexts/categories.context';
 import { useEffect } from 'react';
 import ProductCard from '../../pruduct-card/product-card.component';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 
 const Category=()=>{
 
@@ -16,11 +16,14 @@ const Category=()=>{
         setProducts(categoriesMap[category])
     },[category, categoriesMap])
     return(
-        <div className='category-container'>
+        <Fragment>
+            <h2 className='category-title'>{category.toUpperCase()}</h2>
+            <div className='category-container'>
             {
                 products && products.map((product)=>(<ProductCard key={product.id} product={product}/>))
             }
         </div>
+        </Fragment>
     )
 }
 

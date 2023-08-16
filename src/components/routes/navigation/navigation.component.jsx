@@ -16,13 +16,6 @@ const Navigation =()=>{
     const {isCartOpen}=useContext(CartContext);
     
 
-    //const signOutHandler=async()=>{
-        //await signOutUser();
-        //console.log(res);
-        //setCurrentUser(null);
-        //alert('Successfully Signed Out')
-    //}
-
     return(
       <Fragment>
           <div className="navigation">

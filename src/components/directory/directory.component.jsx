@@ -1,5 +1,5 @@
 import './directory.styles.scss'
-import CategoryItem from '../category-item/category-item.component'
+import DirectoryItem from '../directory-item/directory-item.component'
 
 
 const Categories =()=>{
@@ -36,7 +36,7 @@ const Categories =()=>{
     <div className='directory-container'>
 
       {categories.map((category)=>  //maps the array
-        <CategoryItem key={category.id} category={category}/> //title and url are passed to the category-item component
+        <DirectoryItem key={category.id} category={category}/> //title and url are passed to the category-item component
       )}
     </div>        
     )
