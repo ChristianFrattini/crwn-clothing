@@ -6,7 +6,7 @@ import { CartContext } from "../../../contexts/cart.context"
 import { signOutUser } from "../../../utils/firebase/firebase.utils"
 import CartIcon from "../../cart-icon/cart-icon.component"
 import CartDropdown from "../../cart-dropdown/cart-dropdown.component"
-import {NavigationContainer, LogoContainer, NavLink, NavLinks} from './navigation.styles.jsx'
+import './navigation.styles.scss'
 
 
 const Navigation =()=>{
@@ -18,24 +18,24 @@ const Navigation =()=>{
 
     return(
       <Fragment>
-          <NavigationContainer>
-            <LogoContainer to='/'>
+          <div className="navigation">
+            <Link className="logo-container" to='/'>
                 <CrwnLogo className='logo'/>
-            </LogoContainer>
-              <NavLinks>
-                <NavLink to='shop'>
+            </Link>
+              <div className="nav-links-container">
+                <Link className="nav-link" to='shop'>
                     SHOP
-                </NavLink>
+                </Link>
                 {
                     currentUser?(   //when there is a current user then render a sign out link, if not SIGN in
-                        <NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>) :(<NavLink className="nav-link" to='auth'>
+                        <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>) :(<Link className="nav-link" to='auth'>
                         SIGN IN
-                    </NavLink>)
+                    </Link>)
                 }
                 <CartIcon/>
-              </NavLinks>
+              </div>
               {isCartOpen && <CartDropdown/>}
-          </NavigationContainer>
+          </div>
           <Outlet/>
       </Fragment>
     )
