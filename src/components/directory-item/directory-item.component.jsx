@@ -4,15 +4,15 @@ import {Link} from 'react-router-dom'
 const DirectoryItem=({category})=>{   //CategoryItem takes parameters from category
     const {imageUrl, title}=category;
     return(  //homepage is built
-        <div className='directory-item-container'>
+        <Link className='directory-item-container' to={'shop/'+title.toLowerCase()}>
           <div className='background-image' style={{
             backgroundImage:`url(${imageUrl})`
           }} />
-          <Link  className='body' to={'shop/'+title.toLowerCase()}>
+          <div  className='body' >
             <h2>{title}</h2>
             <p>Shop Now</p>
-          </Link>
-        </div>
+          </div>
+        </Link>
     );
 }
 export default DirectoryItem;
