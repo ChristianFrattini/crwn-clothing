@@ -28,7 +28,7 @@ const SignInForm =()=>{
     const signInWithGoogle = async()=>{     //log in with google account 
         await signInWithGooglePopup();  //destructure the response to get the user
         //console.log(response);
-        
+        alert('You successfully signed in with Google!')
 
     }
 
@@ -45,6 +45,7 @@ const SignInForm =()=>{
             //setCurrentUser(user);
             
             resetFormFields();  //clears form fields setting them to default
+            alert('You successfully signed in!')
             
         }
         catch(error){

@@ -1,7 +1,7 @@
 // user context is a place used as a storage where once logged in/signed up the user data
 //is made available for other components such as orders history and personal user details
 
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 import { onAuthStateChangedListener,signOutUser, createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
 
 
@@ -11,8 +11,46 @@ export const UserContext=createContext({
     setCurrentUser: ()=>null, 
 })
 
+export const USER_ACTION_TYPES={
+    SET_CURRENT_USER: 'SET_CURRENT_USER'
+}
+
+const userReducer=(state, action)=>{
+    console.log(action)
+    const{type, payload}=action;  //destructure the action ---> type and payload(optional)
+    
+
+    switch(type){  //switch case. if type (string) is 'SET_CURRENT_USER' then the current user is the payload
+        case USER_ACTION_TYPES.SET_CURRENT_USER:
+            return{
+                ...state,
+                currentUser:payload
+            }
+
+        case 'increment':
+            return{
+                value: state.value+1,
+            }
+        default:
+            throw new Error(`Unhandled type ${type} in userReducer`)
+    }
+}
+
+const INITIAL_STATE={
+    currentUser: null
+}
+
 export const UserProvider=({children})=>{  //the provider will wrap every component that will need the value
-    const [currentUser,setCurrentUser]=useState(null);
+   // const [currentUser,setCurrentUser]=useState(null);
+
+   const[state, dispatch]=useReducer(userReducer, INITIAL_STATE); //use reducer hook. takes 2 parameters
+
+   const {currentUser}=state
+   console.log(currentUser)
+   const setCurrentUser=(user)=>{
+    dispatch ({type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user})
+   }
+
     const value= {currentUser, setCurrentUser};
 
 

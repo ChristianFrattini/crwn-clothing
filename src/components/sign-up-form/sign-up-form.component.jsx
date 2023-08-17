@@ -42,6 +42,7 @@ const SignUpForm =()=>{
             await createUserDocumentFromAuth (user, {displayName}); // creates the user document
             resetFormFields();  //clears form fields setting them to default
             //console.log(response)
+            alert('You successfully signed up!')
         }
         catch(error){
 
