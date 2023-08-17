@@ -105,7 +105,8 @@ export const CartProvider=({children})=>{
         const newCartTotal=newCartItems.reduce((total, cartItem)=> total + cartItem.quantity*cartItem.price, 0)
         const newCartCount=newCartItems.reduce((total, cartItem)=> total + cartItem.quantity,0)
 
-        dispatch({type: CART_ACTION_TYPES.SET_CART_ITEMS, payload:{cartItems: newCartItems, cartTotal: newCartTotal, cartCount:newCartCount}})
+        dispatch(
+            createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {cartItems: newCartItems, cartTotal: newCartTotal, cartCount:newCartCount}))
         
     }
 
@@ -131,7 +132,7 @@ export const CartProvider=({children})=>{
     }
 
     const setIsCartOpen=(bool)=>{
-        dispatch({type: CART_ACTION_TYPES.SET_IS_CART_OPEN, payload:bool})
+        dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool))
     }
 
     const value={isCartOpen,setIsCartOpen, addItemToCart, cartItems, cartCount, removeItemFromCart, clearItemFromCart, cartTotal}
