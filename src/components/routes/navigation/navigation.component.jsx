@@ -6,12 +6,16 @@ import { CartContext } from "../../../contexts/cart.context"
 import { signOutUser } from "../../../utils/firebase/firebase.utils"
 import CartIcon from "../../cart-icon/cart-icon.component"
 import CartDropdown from "../../cart-dropdown/cart-dropdown.component"
+import { useSelector } from "react-redux"
+import { selectCurrentUser } from "../../../store/user/user.selector"
 import './navigation.styles.scss'
 
 
 const Navigation =()=>{
 
-    const {currentUser}=useContext(UserContext);
+    //const {currentUser}=useContext(UserContext);
+
+    const currentUser=useSelector(selectCurrentUser)//hook thats passes a selector function and it extracts the wanted data from the store
 
     const {isCartOpen}=useContext(CartContext);
     
