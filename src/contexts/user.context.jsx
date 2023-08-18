@@ -54,7 +54,7 @@ export const UserProvider=({children})=>{  //the provider will wrap every compon
     const value= {currentUser, setCurrentUser};
 
 
-    useEffect(()=>{ //use effect is run only once
+    /*useEffect(()=>{ //use effect is run only once
         
         const unsubscribe = onAuthStateChangedListener((user)=>{
             if(user){ //create a user document only if a user comes through, otherwise setcurrentuser
@@ -65,7 +65,7 @@ export const UserProvider=({children})=>{  //the provider will wrap every compon
 
         });  //passes the callback function as the second value 'callback' in firebase code
         return unsubscribe;
-    },[])
+    },[])*/
 
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 
