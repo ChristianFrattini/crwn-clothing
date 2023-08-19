@@ -10,7 +10,7 @@ export const userReducer=(state = INITIAL_STATE, action)=>{
     const{type, payload}=action;  //destructure the action ---> type and payload(optional)
     
 
-    switch(type){  //switch case. if type (string) is 'SET_CURRENT_USER' then the current user is the payload
+    switch(type){  //switch case: if type (string) is 'SET_CURRENT_USER' then the current user is the payload
         case USER_ACTION_TYPES.SET_CURRENT_USER:
             return{
                 ...state,

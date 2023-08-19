@@ -13,15 +13,11 @@ import {store} from './store/store.js'
 ReactDOM.createRoot(document.getElementById('root')).render( //nest the app into the browser router packages
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      
-        <CategoriesProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
-      
-    </BrowserRouter>
+      <BrowserRouter>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
 )
