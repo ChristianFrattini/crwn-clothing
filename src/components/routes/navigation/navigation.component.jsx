@@ -1,13 +1,14 @@
 import { Outlet, Link } from "react-router-dom"
 import { Fragment, useContext } from "react"
 import { ReactComponent as CrwnLogo } from '../../../assets/crown.svg'
-import { UserContext } from "../../../contexts/user.context"
-import { CartContext } from "../../../contexts/cart.context"
+//import { UserContext } from "../../../contexts/user.context"
+import { CartContext } from "../../../contexts (deprecated)/cart.context"
 import { signOutUser } from "../../../utils/firebase/firebase.utils"
 import CartIcon from "../../cart-icon/cart-icon.component"
 import CartDropdown from "../../cart-dropdown/cart-dropdown.component"
 import { useSelector } from "react-redux"
 import { selectCurrentUser } from "../../../store/user/user.selector"
+import { selectIsCartOpen } from "../../../store/cart/cart.selector"
 import './navigation.styles.scss'
 
 
@@ -17,8 +18,8 @@ const Navigation =()=>{
 
     const currentUser=useSelector(selectCurrentUser)//hook thats passes a selector function and it extracts the wanted data from the store
 
-    const {isCartOpen}=useContext(CartContext);
-    
+    //const {isCartOpen}=useContext(CartContext);
+    const isCartOpen=useSelector(selectIsCartOpen)
 
     return(
       <Fragment>

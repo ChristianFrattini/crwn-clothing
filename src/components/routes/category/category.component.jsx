@@ -1,7 +1,7 @@
 import './category.styles.scss'
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { CategoriesContext } from '../../../contexts/categories.context';
+import { CategoriesContext } from '../../../contexts (deprecated)/categories.context';
 import { useEffect } from 'react';
 import ProductCard from '../../pruduct-card/product-card.component';
 import { useState, Fragment } from 'react';
