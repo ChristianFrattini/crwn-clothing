@@ -6,16 +6,19 @@ import { UserProvider } from './contexts (deprecated)/user.context.jsx'  //user 
 import { CategoriesProvider} from './contexts (deprecated)/categories.context.jsx';
 import { CartProvider } from './contexts (deprecated)/cart.context.jsx';
 import { Provider } from 'react-redux'; //redux provider
-import {store} from './store/store.js'
+import {store, persistor} from './store/store.js' 
+import { PersistGate } from 'redux-persist/integration/react';
 
 //import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render( //nest the app into the browser router packages
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate persistor={persistor}> 
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
 )
