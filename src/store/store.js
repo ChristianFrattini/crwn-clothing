@@ -5,19 +5,15 @@ import storage from 'redux-persist/lib/storage' //uses local storage
 
 import { rootReducer } from './root-reducer'
 
-const loggerMiddleware=(store)=>(next)=>(action)=>{
+/*const loggerMiddleware=(store)=>(next)=>(action)=>{
     if(!action.type){
         return next(action);
     }
 
-    //console.log('type:', action.type)
-    //console.log('payload:', action.payload)
-    //console.log('currentState:', store.getState())
-
     next(action);  
     
     console.log('next state: ', store.getState())
-}
+}*/
 
 const persistConfig={  //persist configuration
     key:'root', //persist from the root
@@ -27,8 +23,10 @@ const persistConfig={  //persist configuration
 
 const persistedReducer=persistReducer(persistConfig, rootReducer)
 
-const middleWare=[loggerMiddleware] //whenever an action is dispatched. before it hits the reducer it has to go through the middleware
-const composeEnhancers=compose(applyMiddleware(...middleWare)) 
+const middleWares=[process.env.NODE_ENV == 'development' && logger].filter(Boolean) //whenever an action is dispatched. before it hits the reducer it has to go through the middleware
+//only render the logger when in development mode (change to 'production' to stop logging)
+const composeEnhancer= (process.env.NODE_ENV!='production' && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)||compose
+const composeEnhancers=composeEnhancer(applyMiddleware(...middleWares)) 
 
 //root reducers. core reducer that includes all other smaller reducers
 export const store=createStore(persistedReducer, undefined, composeEnhancers)
