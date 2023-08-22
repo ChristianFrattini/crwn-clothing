@@ -2,6 +2,7 @@ import {compose, createStore, applyMiddleware} from 'redux'  //core redux librar
 import logger from 'redux-logger'
 import { persistStore, persistReducer } from 'redux-persist' //redux persist prevents the loss of date when refreshing the page
 import storage from 'redux-persist/lib/storage' //uses local storage
+import thunk from 'redux-thunk'
 
 import { rootReducer } from './root-reducer'
 
@@ -23,7 +24,7 @@ const persistConfig={  //persist configuration
 
 const persistedReducer=persistReducer(persistConfig, rootReducer)
 
-const middleWares=[process.env.NODE_ENV == 'development' && logger].filter(Boolean) //whenever an action is dispatched. before it hits the reducer it has to go through the middleware
+const middleWares=[process.env.NODE_ENV == 'development' && logger, thunk].filter(Boolean) //whenever an action is dispatched. before it hits the reducer it has to go through the middleware
 //only render the logger when in development mode (change to 'production' to stop logging)
 const composeEnhancer= (process.env.NODE_ENV!='production' && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)||compose
 const composeEnhancers=composeEnhancer(applyMiddleware(...middleWares)) 
