@@ -11,7 +11,7 @@ export const fetchCategoriesSuccess=(categoriesArray)=>createAction(CATEGORIES_A
 
 export const fetchCategoriesFailed=(error)=>createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error)
 
-export const fetchCategoriesAsync=()=>async(dispatch)=>{  //new async function using redux-thunk (action based approach to normal async functions with useEffect)
+/*export const fetchCategoriesAsync=()=>async(dispatch)=>{  //new async function using redux-thunk (action based approach to normal async functions with useEffect)
     dispatch(fetchCategoriesStart());  // dispatch the function to signal the fetching of the categories
     try{
         const categoriesArray = await getCategoriesAndDocuments() 
@@ -20,4 +20,4 @@ export const fetchCategoriesAsync=()=>async(dispatch)=>{  //new async function u
         dispatch(fetchCategoriesFailed(error))// if an error occurs return it by using the appropriate failure function
     }
     
-}
+}*/

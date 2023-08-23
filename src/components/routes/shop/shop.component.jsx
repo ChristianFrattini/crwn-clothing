@@ -7,7 +7,8 @@ import { useEffect } from 'react'
 import { getCategoriesAndDocuments } from '../../../utils/firebase/firebase.utils'
 //import { setCategories } from '../../../store/categories/category.action'
 import { useDispatch } from 'react-redux'
-import { fetchCategoriesAsync } from '../../../store/categories/category.action'
+import { fetchCategoriesStart } from '../../../store/categories/category.action'
+//import { fetchCategoriesAsync} from '../../../store/categories/category.action'
 
 import './shop.styles.scss'
 
@@ -20,7 +21,7 @@ const Shop=()=>{
             //const categoriesArray = await getCategoriesAndDocuments()
             //console.log(categoriesArray);
 
-            dispatch(fetchCategoriesAsync())
+            dispatch(fetchCategoriesStart()) //instead of fetchCategoriesAsyng (redux-thunk), fetchCategoriesStart is run(saga)
         //}
         //getCategoriesMap();
     },[])
