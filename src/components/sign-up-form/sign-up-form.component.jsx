@@ -6,6 +6,8 @@ import FormInput from "../form-input/form-input.component";
 import './sign-up-form.styles.scss'
 import Button from "../button/button.component";
 import { UserContext } from "../../contexts (deprecated)/user.context";
+import { useDispatch } from "react-redux";
+import { signUpStart } from "../../store/user/user.action";
 
 const defaultFormFields={
     displayName:'',
@@ -18,6 +20,7 @@ const SignUpForm =()=>{
     //usestate is called every time the text changes inside the input
     const [formFields, setFormFields]=useState(defaultFormFields); // use state to read the form fields and put them into an array
     const {displayName, email, password, confirmPassword}=formFields; //destructure the array for the specific values to be set
+    const dispatch=useDispatch()
 
     //const {setCurrentUser}=useContext(UserContext)
 
@@ -35,13 +38,15 @@ const SignUpForm =()=>{
         }
         
         try{
-            const {user}=await createAuthUserWithEmailAndPassword(email,password);  //creates the the authentication user
+            /*const {user}=await createAuthUserWithEmailAndPassword(email,password);  //creates the the authentication user
 
             //setCurrentUser(user);
 
             await createUserDocumentFromAuth (user, {displayName}); // creates the user document
             resetFormFields();  //clears form fields setting them to default
-            //console.log(response)
+            //console.log(response)*/
+            dispatch(signUpStart(email, password, displayName))
+            resetFormFields();
             alert('You successfully signed up!')
         }
         catch(error){
