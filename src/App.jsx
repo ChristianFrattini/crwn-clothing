@@ -13,13 +13,13 @@ import { useDispatch } from 'react-redux'
 import './index.css'
 
 import { useState, useEffect } from "react";
-import { onAuthStateChangedListener,signOutUser, createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from './store/user/user.action'
+import { onAuthStateChangedListener,signOutUser, createUserDocumentFromAuth, getCurrentUser } from "./utils/firebase/firebase.utils";
+import { checkUserSession, setCurrentUser } from './store/user/user.action'
 
 const App=()=> {
   const dispatch=useDispatch();
 
-  useEffect(()=>{ //use effect is run only once
+  /*useEffect(()=>{ //use effect is run only once
         
     const unsubscribe = onAuthStateChangedListener((user)=>{
         if(user){ //create a user document only if a user comes through, otherwise setcurrentuser
@@ -31,6 +31,11 @@ const App=()=> {
 
     });  //passes the callback function as the second value 'callback' in firebase code
     return unsubscribe;
+},[])*/
+
+useEffect(()=>{
+  //getCurrentUser()
+  dispatch(checkUserSession())
 },[])
 
   return (  //routes initialization path and element (component) 

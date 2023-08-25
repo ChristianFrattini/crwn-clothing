@@ -2,7 +2,9 @@ import { USER_ACTION_TYPES } from "./user.types"
 
 
 const INITIAL_STATE={
-    currentUser: null
+    currentUser: null,
+    isLoading: false,
+    error: null
 }
 
 
@@ -11,11 +13,15 @@ export const userReducer=(state = INITIAL_STATE, action)=>{
     
 
     switch(type){  //switch case: if type (string) is 'SET_CURRENT_USER' then the current user is the payload
-        case USER_ACTION_TYPES.SET_CURRENT_USER:
+        case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
             return{
                 ...state,
                 currentUser:payload
             }
+        case USER_ACTION_TYPES.SIGN_IN_FAILED:
+            return {
+                ...state, error:payload
+            }    
 
         case 'increment':
             return{

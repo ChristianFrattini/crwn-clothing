@@ -86,7 +86,7 @@ const firebaseConfig = {
         console.log('error creating the user', error.message)
       }
     }
-    return userDocRef;
+    return userSnapshot;
   }
 
   export const createAuthUserWithEmailAndPassword=async( email,password)=>{  //authentication with user and password
@@ -103,3 +103,16 @@ const firebaseConfig = {
 
   export const onAuthStateChangedListener=(callback)=> onAuthStateChanged(auth, callback)
   //open listener->its always listening for a change state in the auth process
+
+  export const getCurrentUser=()=>{  //conversion user from observabe listener to action based function call
+    return new Promise((resolve, reject)=>{
+      const unsubscribe =onAuthStateChanged(
+          auth,
+          (userAuth)=>{
+            unsubscribe();
+            resolve(userAuth)
+          },
+          reject
+      )
+    })
+  }
