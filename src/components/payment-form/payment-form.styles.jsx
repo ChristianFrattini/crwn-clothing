@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../button/button.component'
 
 export const PaymentFormContainer=styled.div`
     height: 300px;
@@ -13,3 +14,4 @@ export const FormContainer=styled.form`
     min-width: 500px;
 
 `
+
