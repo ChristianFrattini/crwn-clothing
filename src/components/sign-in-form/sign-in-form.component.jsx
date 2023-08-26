@@ -48,7 +48,7 @@ const SignInForm =()=>{
             //setCurrentUser(user);
             
             resetFormFields();  //clears form fields setting them to default
-            alert('You successfully signed in!')
+            //alert('You successfully signed in!')
             
         }
         catch(error){

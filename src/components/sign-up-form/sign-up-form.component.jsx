@@ -47,7 +47,7 @@ const SignUpForm =()=>{
             //console.log(response)*/
             dispatch(signUpStart(email, password, displayName))
             resetFormFields();
-            alert('You successfully signed up!')
+            //alert('You successfully signed up!')
         }
         catch(error){
 

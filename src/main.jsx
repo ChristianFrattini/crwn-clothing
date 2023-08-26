@@ -8,6 +8,8 @@ import { CartProvider } from './contexts (deprecated)/cart.context.jsx';
 import { Provider } from 'react-redux'; //redux provider
 import {store, persistor} from './store/store.js' 
 import { PersistGate } from 'redux-persist/integration/react';
+import { Elements } from '@stripe/react-stripe-js'; //components for stripe
+import { stripePromise } from './utils/stripe/stripe.utils.js';
 
 //import './index.css'
 
@@ -16,7 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render( //nest the app into
     <Provider store={store}>
       <PersistGate persistor={persistor}> 
         <BrowserRouter>
+        <Elements stripe={stripePromise}>
           <App />
+        </Elements>
         </BrowserRouter>
       </PersistGate>
     </Provider>
