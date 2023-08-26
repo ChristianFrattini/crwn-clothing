@@ -31,7 +31,7 @@ const SignInForm =()=>{
         //await signInWithGooglePopup();  //destructure the response to get the user
         //console.log(response);
         dispatch(googleSignInStart())
-        alert('You successfully signed in with Google!')
+        //alert('You successfully signed in with Google!')
 
     }
 
